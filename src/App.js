@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ShowItems from "./components/ShowItems";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ItemDetails from "./components/ItemsDetail";
 
 function App() {
+  const items = [
+    { label: "hey", content: "hello hi there" },
+    { label: "what", content: "what are you doing" },
+    { label: "where", content: "where have you been" },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="container my-3">
+        <Routes>
+          <Route exact path="/" element={<ShowItems items={items} />} />
+
+          <Route
+            path="/showitems/:label"
+            element={<ItemDetails items={items} />}
+          />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
